@@ -1,0 +1,22 @@
+name: Package VS Code Extension
+
+on:
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Package extension
+        id: package
+        uses: nhedger/package-vscode-extension@v1
+
+      - name: Publish extension artifact
+        uses: actions/upload-artifact@v3
+        with:
+            name: vscode-typograf
+            path: ${{ steps.package.outputs.packagePath }}
