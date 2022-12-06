@@ -1,6 +1,6 @@
 {
   "name": "vscode-typograf",
-  "displayName": "vscode-typograf",
+  "displayName": "Typograf for VS Code",
   "version": "0.4.0",
   "description": "Helps to automatically place the non-breaking spaces, correct small typos, replace the quotation marks to a correct format and much more.",
   "categories": [
@@ -39,11 +39,13 @@
           "vscode-typograf.autoDetectLocale": {
             "type": "boolean",
             "default": true,
+            "markdownDescription": "If enabled, Typograf will try to detect the selected text locale automatically.",
             "order": 9
           },
           "vscode-typograf.locale": {
             "type": "string",
             "default": "en-US",
+            "markdownDescription": "The default locale used by Typograf. Will be overridden unless `#vscode-typograf.autoDetectLocale#` is disabled.",
             "order": 10,
             "enum": [
               "be",
@@ -80,18 +82,28 @@
           "vscode-typograf.type": {
             "type": "string",
             "default": "default",
-            "description": "Type of HTML entities. Valid values are 'default', 'name' and 'digit'",
+            "markdownDescription": "How Typograf should render HTML entities.",
             "order": 20,
             "enum": [
               "default",
               "name",
               "digit"
+            ],
+            "enumItemLabels": [
+              "“A”",
+              "&ldquo;A&rdquo;",
+              "&#8220;A&#8221;"
+            ],
+            "markdownEnumDescriptions": [
+              "Typograf will render HTML entities as Unicode characters",
+              "Typograf will render HTML entities as character references",
+              "Typograf will render HTML entities as numeric references"
             ]
           },
           "vscode-typograf.onlyInvisible": {
             "type": "boolean",
             "default": false,
-            "description": "HTML entities only for invisible symbols",
+            "markdownDescription": "If enabled and `#vscode-typograf.type#` is set to `name` or `digit`, Typograf will only render invisible characters as HTML entity references.",
             "order": 30
           },
           "vscode-typograf.enableRules": {
