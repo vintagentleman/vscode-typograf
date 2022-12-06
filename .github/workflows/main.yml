@@ -18,7 +18,14 @@ jobs:
         id: package
         uses: nhedger/package-vscode-extension@v1
 
+      - name: Get package data
+        id: packageData
+        run: |
+          echo "name=$(cat package.json | jq '.name' | tr -d '"')" >> $GITHUB_OUTPUT
+          echo "version=$(cat package.json | jq '.version' | tr -d '"')" >> $GITHUB_OUTPUT
+
       - name: Publish extension artifact
         uses: actions/upload-artifact@v3
         with:
+          name: ${{ steps.packageData.outputs.name }}-${{ steps.packageData.outputs.version }}.vsix
           path: ${{ steps.package.outputs.packagePath }}
