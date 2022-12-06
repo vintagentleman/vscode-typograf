@@ -78,8 +78,8 @@ export function activate(context: vscode.ExtensionContext) {
 					type: settings.get('type', 'default'),
 					onlyInvisible: settings.get('onlyInvisible', false),
 				},
-				enableRule: prepareRules(settings.get('enableRules', '')),
-				disableRule: prepareRules(settings.get('disableRules', '')),
+				enableRule: prepareRules(settings.get('enableRules', [])),
+				disableRule: prepareRules(settings.get('disableRules', [])),
 			});
 
 			const result = t.execute(text);
@@ -96,11 +96,9 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(process);
 }
 
-function prepareRules(string_: string) {
-	return string_
-		.split(/[,;: ]/)
-		.map(rule => rule.trim())
-		.filter(Boolean);
+function prepareRules(rules: string[] | string) {
+	const rulesAsArray = Array.isArray(rules) ? rules : rules.split(/[,;: ]/);
+	return rulesAsArray.map(rule => rule.trim()).filter(Boolean);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function

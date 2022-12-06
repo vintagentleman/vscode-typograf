@@ -95,15 +95,15 @@
             "order": 30
           },
           "vscode-typograf.enableRules": {
-            "type": "string",
-            "default": "",
-            "description": "Specify [rules](https://github.com/typograf/typograf/blob/dev/docs/RULES.en-US.md) to enable, separated by commas.\nExample: `common/nbsp/replaceNbsp,ru/optalign/*`",
+            "type": "array",
+            "default": [],
+            "markdownDescription": "Typograf [rules](https://github.com/typograf/typograf/blob/dev/docs/RULES.en-US.md) that should be enabled.",
             "order": 40
           },
           "vscode-typograf.disableRules": {
-            "type": "string",
-            "default": "",
-            "description": "Specify [rules](https://github.com/typograf/typograf/blob/dev/docs/RULES.en-US.md) to disable, separated by commas.\nExample: `common/space/afterPunctuation,common/space/trimLeft`",
+            "type": "array",
+            "default": [],
+            "markdownDescription": "Typograf [rules](https://github.com/typograf/typograf/blob/dev/docs/RULES.en-US.md) that should be disabled.",
             "order": 50
           }
         }
