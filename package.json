@@ -105,6 +105,20 @@
             "default": [],
             "markdownDescription": "Typograf [rules](https://github.com/typograf/typograf/blob/dev/docs/RULES.en-US.md) that should be disabled.",
             "order": 50
+          },
+          "vscode-typograf.safeTags": {
+            "type": "array",
+            "default": [],
+            "markdownDescription": "Text elements between which no changes will be made by Typograf.",
+            "examples": [
+              [
+                [
+                  "<no-typography>",
+                  "</no-typography>"
+                ]
+              ]
+            ],
+            "order": 60
           }
         }
       }

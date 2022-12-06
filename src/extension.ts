@@ -82,6 +82,11 @@ export function activate(context: vscode.ExtensionContext) {
 				disableRule: prepareRules(settings.get('disableRules', [])),
 			});
 
+			const safeTags: Array<[string, string]> = settings.get('safeTags', []);
+			for (const pair of safeTags) {
+				t.addSafeTag(...pair);
+			}
+
 			const result = t.execute(text);
 
 			await editor.edit(async builder => {
