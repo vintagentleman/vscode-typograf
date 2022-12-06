@@ -122,12 +122,13 @@
     "onCommand:vscode-typograf.processSelected"
   ],
   "dependencies": {
-    "@types/langs": "^2.0.1",
-    "franc": "^6.1.0",
+    "franc": "^5.0.0",
     "langs": "^2.0.0",
     "typograf": "^6.15.1"
   },
   "devDependencies": {
+    "@types/franc": "^5.0.1",
+    "@types/langs": "^2.0.1",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.11",
     "@types/vscode": "^1.73.1",

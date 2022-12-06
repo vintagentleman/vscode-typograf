@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import * as vscode from 'vscode';
-import * as Typograf from 'typograf';
-import {franc} from 'franc';
+import Typograf from 'typograf';
+import detect from 'franc';
 import * as langs from 'langs';
 
 const supportedLocales = new Set([
@@ -52,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
 			let message = 'default ' + locale;
 
 			if (settings.get('autoDetectLocale', true)) {
-				const detected = franc(text);
+				const detected = detect(text);
 
 				if (detected !== 'und') {
 					const l = langs.where('3', detected);
