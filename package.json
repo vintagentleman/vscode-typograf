@@ -1,7 +1,11 @@
 {
   "name": "vscode-typograf",
   "displayName": "vscode-typograf",
+  "version": "0.4.0",
   "description": "Helps to automatically place the non-breaking spaces, correct small typos, replace the quotation marks to a correct format and much more.",
+  "categories": [
+    "Formatters"
+  ],
   "keywords": [
     "typography",
     "typograf",
@@ -9,31 +13,19 @@
     "типограф",
     "кавычки"
   ],
-  "version": "0.3.0",
-  "publisher": "rusnasonov",
   "repository": {
     "type": "git",
     "url": "https://github.com/rusnasonov/vscode-typograf.git"
   },
-  "engines": {
-    "vscode": "^1.25.0"
-  },
-  "categories": [
-    "Formatters"
-  ],
-  "activationEvents": [
-    "onCommand:vscode-typograf.processSelected"
-  ],
+  "publisher": "rusnasonov",
   "main": "./out/extension",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./"
+  },
   "contributes": {
-    "keybindings": [
-      {
-        "command": "vscode-typograf.processSelected",
-        "key": "ctrl+alt+t",
-        "mac": "ctrl+alt+t",
-        "when": "editorHasSelection"
-      }
-    ],
     "commands": [
       {
         "command": "vscode-typograf.processSelected",
@@ -116,25 +108,33 @@
           }
         }
       }
+    ],
+    "keybindings": [
+      {
+        "command": "vscode-typograf.processSelected",
+        "key": "ctrl+alt+t",
+        "mac": "ctrl+alt+t",
+        "when": "editorHasSelection"
+      }
     ]
   },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  "activationEvents": [
+    "onCommand:vscode-typograf.processSelected"
+  ],
+  "dependencies": {
+    "@types/langs": "^2.0.1",
+    "franc": "^6.1.0",
+    "langs": "^2.0.0",
+    "typograf": "^6.15.1"
   },
   "devDependencies": {
-    "typescript": "^2.6.1",
-    "vscode": "^1.1.6",
-    "tslint": "^5.8.0",
-    "@types/node": "^7.0.43",
-    "@types/mocha": "^2.2.42"
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.11.11",
+    "@types/vscode": "^1.73.1",
+    "typescript": "^4.9.3",
+    "xo": "^0.53.1"
   },
-  "dependencies": {
-    "franc": "^4.0.0",
-    "langs": "^2.0.0",
-    "typograf": "^6.7.2"
+  "engines": {
+    "vscode": "^1.73.1"
   }
 }
