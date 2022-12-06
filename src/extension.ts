@@ -45,6 +45,12 @@ export function activate(context: vscode.ExtensionContext) {
 			const editor = vscode.window.activeTextEditor;
 
 			if (!editor) {
+				await vscode.window.showErrorMessage('No file opened.');
+				return;
+			}
+
+			if (editor.selection.isEmpty) {
+				await vscode.window.showErrorMessage('No text selected.');
 				return;
 			}
 
