@@ -163,7 +163,7 @@
   "dependencies": {
     "franc": "^5.0.0",
     "langs": "^2.0.0",
-    "typograf": "^6.15.1"
+    "typograf": "github:vintagentleman/typograf#823e35a4d01ccd3653d4264447259506c73c811d"
   },
   "devDependencies": {
     "@types/franc": "^5.0.1",
