@@ -27,5 +27,5 @@ jobs:
       - name: Publish extension artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ steps.packageData.outputs.name }}-${{ steps.packageData.outputs.version }}.vsix
+          name: ${{ steps.packageData.outputs.name }}-${{ steps.packageData.outputs.version }}
           path: ${{ steps.package.outputs.packagePath }}

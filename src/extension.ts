@@ -104,13 +104,12 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			const result = t.execute(text);
-
 			await editor.edit(async builder => {
-				builder.replace(editor.selection, result);
-				await vscode.window.showInformationMessage(
-					'Typograf completed, locale: ' + message,
-				);
+				builder.replace(editor.selection, (editor.selection.end.character === 0) ? result.concat('\n') : result);
 			});
+			await vscode.window.showInformationMessage(
+				'Typograf completed, locale: ' + message,
+			);
 		},
 	);
 
