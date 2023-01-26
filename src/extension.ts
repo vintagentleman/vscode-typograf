@@ -6,6 +6,9 @@ import Typograf from 'typograf';
 import detect from 'franc';
 import * as langs from 'langs';
 
+type SafeTags = Array<[string, string]>;
+type RuleSettings = Record<string, Record<string, unknown>>;
+
 const supportedLocales = new Set([
 	'be',
 	'bg',
@@ -88,7 +91,14 @@ export function activate(context: vscode.ExtensionContext) {
 				disableRule: prepareRules(settings.get('disableRules', [])),
 			});
 
-			const safeTags: Array<[string, string]> = settings.get('safeTags', []);
+			const ruleSettings = settings.get('ruleSettings', {}) as RuleSettings;
+			for (const [rule, settings] of Object.entries(ruleSettings)) {
+				for (const [setting, value] of Object.entries(settings)) {
+					t.setSetting(rule, setting, value);
+				}
+			}
+
+			const safeTags = settings.get('safeTags', []) as SafeTags;
 			for (const pair of safeTags) {
 				t.addSafeTag(...pair);
 			}
