@@ -6,40 +6,10 @@ import Typograf from 'typograf';
 import detect from 'franc';
 import * as langs from 'langs';
 
+import {supportedLocales} from './locales';
+
 type SafeTags = Array<[string, string]>;
 type RuleSettings = Record<string, Record<string, unknown>>;
-
-const supportedLocales = new Set([
-	'be',
-	'bg',
-	'ca',
-	'cs',
-	'da',
-	'de',
-	'el',
-	'en-GB',
-	'en-US',
-	'eo',
-	'es',
-	'et',
-	'fi',
-	'fr',
-	'ga',
-	'hu',
-	'it',
-	'lv',
-	'nl',
-	'no',
-	'pl',
-	'ro',
-	'ru',
-	'sk',
-	'sl',
-	'sr',
-	'sv',
-	'tr',
-	'uk',
-]);
 
 export function activate(context: vscode.ExtensionContext) {
 	const process = vscode.commands.registerCommand(
@@ -65,6 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 			if (settings.get('autoDetectLocale', true)) {
 				const detected = detect(text);
+				const localeSet = new Set(supportedLocales.map(locale => locale.label));
 
 				if (detected !== 'und') {
 					const l = langs.where('3', detected);
@@ -72,7 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
 					if (l !== undefined) {
 						locale = l['1'];
 
-						if (locale === 'en' || !supportedLocales.has(locale)) {
+						if (locale === 'en' || !localeSet.has(locale)) {
 							locale = 'en-US';
 						}
 
@@ -113,7 +84,24 @@ export function activate(context: vscode.ExtensionContext) {
 		},
 	);
 
-	context.subscriptions.push(process);
+	const changeLocale = vscode.commands.registerCommand(
+		'vscode-typograf.changeLocale',
+		async () => {
+			const locale = await vscode.window.showQuickPick(supportedLocales, {
+				matchOnDescription: true,
+			});
+
+			if (locale === undefined) {
+				return;
+			}
+
+			const settings = vscode.workspace.getConfiguration('vscode-typograf');
+			await settings.update('locale', locale.label, true);
+			return vscode.window.showInformationMessage(`Locale changed to ${locale.description}.`);
+		},
+	);
+
+	context.subscriptions.push(process, changeLocale);
 }
 
 function prepareRules(rules: string[] | string) {

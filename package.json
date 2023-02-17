@@ -1,7 +1,7 @@
 {
   "name": "vscode-typograf",
   "displayName": "Typograf for VS Code",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Helps to automatically place the non-breaking spaces, correct small typos, replace the quotation marks to a correct format and much more.",
   "categories": [
     "Formatters"
@@ -29,7 +29,11 @@
     "commands": [
       {
         "command": "vscode-typograf.processSelected",
-        "title": "Run Typograf on selected text"
+        "title": "Typograf: Run on selected text"
+      },
+      {
+        "command": "vscode-typograf.changeLocale",
+        "title": "Typograf: Change locale"
       }
     ],
     "configuration": [
@@ -38,7 +42,7 @@
         "properties": {
           "vscode-typograf.autoDetectLocale": {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "markdownDescription": "If enabled, Typograf will try to detect the selected text locale automatically.",
             "order": 9
           },
@@ -158,7 +162,8 @@
     ]
   },
   "activationEvents": [
-    "onCommand:vscode-typograf.processSelected"
+    "onCommand:vscode-typograf.processSelected",
+    "onCommand:vscode-typograf.changeLocale"
   ],
   "dependencies": {
     "franc": "^5.0.0",
