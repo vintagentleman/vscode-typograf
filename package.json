@@ -1,7 +1,7 @@
 {
   "name": "vscode-typograf",
   "displayName": "Typograf for VS Code",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Helps to automatically place the non-breaking spaces, correct small typos, replace the quotation marks to a correct format and much more.",
   "categories": [
     "Formatters"
@@ -168,7 +168,7 @@
   "dependencies": {
     "franc": "^5.0.0",
     "langs": "^2.0.0",
-    "typograf": "github:vintagentleman/typograf#67cdfc980f2641cc8fedbd40e0f4bb5be873c3fc"
+    "typograf": "github:vintagentleman/typograf#8bc5ddd4754f057cd45bb7f449f9ce6625572221"
   },
   "devDependencies": {
     "@types/franc": "^5.0.1",
