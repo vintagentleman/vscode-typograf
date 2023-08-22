@@ -1,5 +1,13 @@
 export const supportedLocales = [
 	{
+		label: 'ru',
+		description: 'Russian',
+	},
+	{
+		label: 'en-US',
+		description: 'English • United States',
+	},
+	{
 		label: 'be',
 		description: 'Belarusian',
 	},
@@ -30,10 +38,6 @@ export const supportedLocales = [
 	{
 		label: 'en-GB',
 		description: 'English • Great Britain',
-	},
-	{
-		label: 'en-US',
-		description: 'English • United States',
 	},
 	{
 		label: 'eo',
@@ -86,10 +90,6 @@ export const supportedLocales = [
 	{
 		label: 'ro',
 		description: 'Romanian',
-	},
-	{
-		label: 'ru',
-		description: 'Russian',
 	},
 	{
 		label: 'sk',
